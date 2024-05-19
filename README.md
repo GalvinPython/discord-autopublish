@@ -11,7 +11,6 @@
 # Instructions
 1) [Invite the bot to a server of your choice, with all the permissions](https://discord.com/oauth2/authorize?client_id=1241739031252045935&permissions=8&scope=bot+applications.commands)
 2) That's it! Once the bot has been invited, it'll listen out for any messages and will publish them automatically
-Note: It is recommended to send a test message to ensure that the bot is working. If it isn't, check the section below
 
 # Why admin?
 I don't create my bots with admin permissions unless absolutely necessary, however this is a early product and during testing we ran into a lot of permission related issues. The solution was to give it admin permissions.  
