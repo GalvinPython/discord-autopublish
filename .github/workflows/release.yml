@@ -8,6 +8,8 @@ on:
 jobs:
   check_version:
     runs-on: ubuntu-latest
+    outputs:
+      version_changed: ${{ steps.version_compare.outputs.version_changed }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -38,10 +40,10 @@ jobs:
         run: |
           if [ "${{ env.CURRENT_VERSION }}" == "${{ env.LATEST_VERSION }}" ]; then
             echo "No version change detected."
-            echo "version_changed=false" >> $GITHUB_ENV
+            echo "::set-output name=version_changed::false"
           else
             echo "Version change detected."
-            echo "version_changed=true" >> $GITHUB_ENV
+            echo "::set-output name=version_changed::true"
           fi
         env:
           CURRENT_VERSION: ${{ env.CURRENT_VERSION }}
