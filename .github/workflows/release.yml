@@ -22,7 +22,8 @@ jobs:
 
       - name: Get the current version from package.json
         id: current_version
-        run: echo "CURRENT_VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
+        run: |
+          echo "CURRENT_VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
 
       - name: Get the latest release version
         id: latest_release
@@ -35,7 +36,7 @@ jobs:
       - name: Compare versions
         id: version_compare
         run: |
-          if [ "$CURRENT_VERSION" == "$LATEST_VERSION" ]; then
+          if [ "${{ env.CURRENT_VERSION }}" == "${{ env.LATEST_VERSION }}" ]; then
             echo "No version change detected."
             echo "version_changed=false" >> $GITHUB_ENV
           else
