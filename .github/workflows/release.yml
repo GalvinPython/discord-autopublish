@@ -30,7 +30,7 @@ jobs:
       - name: Compare versions
         id: version_compare
         run: |
-          if [ "${{ env.CURRENT_VERSION }}" == "${{ env.LATEST_VERSION }}" ]; then
+          if [ "v${{ env.CURRENT_VERSION }}" == "${{ env.LATEST_VERSION }}" ]; then
             echo "No version change detected."
             echo "::set-output name=version_changed::false"
           else
