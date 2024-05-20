@@ -1,6 +1,7 @@
-// Check if DISCORD_TOKEN has been provided as an environment variable
+// Check if DISCORD_TOKEN has been provided as an environment variable, and is a valid regex pattern
 const discordToken: string | undefined = process.env?.DISCORD_TOKEN
-if (!discordToken) throw 'You MUST provide a discord token in .env!'
+
+if (!discordToken || discordToken === 'YOUR_TOKEN_HERE') throw 'You MUST provide a discord token in .env!'
 
 // If it has, run the bot
 import { Client, GatewayIntentBits, REST, Routes } from 'discord.js';

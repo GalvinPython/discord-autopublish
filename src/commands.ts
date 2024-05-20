@@ -1,7 +1,7 @@
 // Commands taken from https://github.com/NiaAxern/discord-youtube-subscriber-count/blob/main/src/commands/utilities.ts
 
 import { heapStats } from 'bun:jsc';
-import client from './index';
+import client from '.';
 import type { CommandInteraction } from 'discord.js';
 
 interface Command {
