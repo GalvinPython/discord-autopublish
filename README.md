@@ -16,6 +16,10 @@
 I don't create my bots with admin permissions unless absolutely necessary, however this is a early product and during testing we ran into a lot of permission related issues. The solution was to give it admin permissions.  
 This can be slightly concerning, sure, however security is always my number one priority.
 
+# Rate Limits
+Discord has a rate limit for publishing channels of 10 announcements per server **per hour**.  
+Please do not use this in your server if you exceed this limit
+
 <!-- # Support
 [Support Discord Server](https://discord.gg/<REDACTED_FOR_NOW>) -->
 
