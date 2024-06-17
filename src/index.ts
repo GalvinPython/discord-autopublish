@@ -9,11 +9,11 @@ import commandsMap from './commands';
 import fs from 'fs/promises';
 
 const client = new Client({
-    intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent
-    ]
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent
+	]
 });
 
 // Update the commands
@@ -22,16 +22,16 @@ const rest = new REST().setToken(discordToken)
 const getAppId: any = await rest.get(Routes.currentApplication()) || { id: null }
 if (!getAppId?.id) throw 'No application ID was able to be found with this token'
 const data: any = await rest.put(
-    Routes.applicationCommands(getAppId.id),
-    {
-        body: [...commandsMap.values()].map((a) => {
-            return a.data;
-        }),
-    },
+	Routes.applicationCommands(getAppId.id),
+	{
+		body: [...commandsMap.values()].map((a) => {
+			return a.data;
+		}),
+	},
 );
 
 console.log(
-    `Successfully reloaded ${data.length} application (/) commands.`,
+	`Successfully reloaded ${data.length} application (/) commands.`,
 );
 
 client.login(discordToken);
