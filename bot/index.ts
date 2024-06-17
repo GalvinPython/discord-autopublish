@@ -39,7 +39,7 @@ client.login(discordToken);
 export default client
 
 // Import events
-const getEvents = await fs.readdir('src/events');
+const getEvents = await fs.readdir('bot/events');
 for await (const file of getEvents) {
 	await import('./events/' + file);
 }

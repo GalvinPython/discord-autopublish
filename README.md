@@ -20,6 +20,9 @@ This can be slightly concerning, sure, however security is always my number one 
 Discord has a rate limit for publishing channels of 10 announcements per server **per hour**.  
 Please do not use this in your server if you exceed this limit
 
+# Website
+The website for the bot is [here](https://autopublish.galvindev.me.uk)!
+
 <!-- # Support
 [Support Discord Server](https://discord.gg/<REDACTED_FOR_NOW>) -->
 

@@ -1,0 +1,140 @@
+<!-- Written in pure HTML just for you -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Auto Publish for Discord | Publish with no clicks</title>
+	<meta name="description"
+		content="Auto Publish is a Discord bot that when you invite it to your server, will automatically publish your announcements with no delay. No click involved, it just joins and does its tasks with no fuss">
+	<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="shortcut icon"
+		href="https://raw.githubusercontent.com/GalvinPython/discord-autopublish/main/.github/assets/loudspeaker_1f4e2.png"
+		type="image/x-icon">
+	<style>
+		body {
+			scroll-behavior: smooth;
+			background-color: #121212;
+			font-family: 'Urbanist', sans-serif;
+			color: #e0e0e0;
+			margin: 0;
+			padding: 0;
+		}
+
+		main {
+			background-color: #1e1e1e;
+			width: 80vw;
+			margin: 20px auto;
+			padding: 20px;
+			box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+			border-radius: 8px;
+		}
+
+		a {
+			color: #bb86fc;
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		.introduction {
+			text-align: center;
+		}
+
+		h1,
+		h3 {
+			color: #bb86fc;
+		}
+
+		#about,
+		#howitworks,
+		#terms,
+		#privacy,
+		#invite,
+		#links {
+			margin-bottom: 20px;
+		}
+
+		@media (max-width: 768px) {
+			main {
+				width: 90vw;
+				padding: 10px;
+			}
+		}
+
+		video {
+			width: 90%;
+		}
+	</style>
+</head>
+
+<body>
+	<main>
+		<section class="introduction">
+			<h1>Auto Publish for Discord</h1>
+			<h3>Publish with no clicks</h3>
+		</section>
+
+		<section id="about">
+			<h3>What is it?</h3>
+			<p>Auto Publish is a Discord bot that when you invite it to your server, will automatically publish your
+				announcements with
+				no delay. No click involved, it just joins and does its tasks with no fuss</p>
+		</section>
+
+		<section id="howitworks">
+			<h3>How does it work?</h3>
+			<p>It's fairly simple actually! Just invite the bot (<a href="#invite">linked below</a>) and it'll listen
+				for your messages and if it's a message from an announcement channel, it'll publish for you
+				automatically!</p>
+			<video controls loop autoplay controlslist="nodownload noplaybackrate" disablepictureinpicture>
+				<source src="./NmfoLGWum6.mp4" type="video/mp4">
+				Your browser can't play this video
+			</video>
+		</section>
+
+		<section id="terms">
+			<h3>Terms of Service</h3>
+			<ul>
+				<li>Discord has a rate limit of 10 published messages per hour per server.</li>
+				<li>You may use this in any server that complies with the Discord ToS.</li>
+				<li>You may be blocked from using the bot if your server exceeds the rate limit.</li>
+			</ul>
+		</section>
+
+		<section id="privacy">
+			<h3>Privacy Policy</h3>
+			<ul>
+				<li>The bot requires the intent to look at messages in your server, but only to check if they are in
+					announcement channels.</li>
+				<li>Every published message is logged (not the content, just the channel ID) to assist with issues.</li>
+				<li>Any messages attempted to be published are logged (just the channel and message IDs) to help with
+					errors.
+				</li>
+				<li>Logs are only there for the purposes of aiding you with any problems.</li>
+				<li>Any information not listed here isn't logged.</li>
+			</ul>
+		</section>
+
+		<section id="invite">
+			<h3>Invites</h3>
+			<a
+				href="https://discord.com/oauth2/authorize?client_id=1241739031252045935&permissions=8&scope=bot+applications.commands">Bot</a>
+		</section>
+
+		<section id="links">
+			<h3>Links</h3>
+			<a href="https://github.com/GalvinPython/discord-autopublish">Github</a>
+			<br>
+			<a href="https://twitter.com/reallygalvin">Twitter</a>
+		</section>
+		<br>
+		<span><b>Current version (1.0.2)</b> released <b>17th June 2024</b></span>
+	</main>
+</body>
+
+</html>
