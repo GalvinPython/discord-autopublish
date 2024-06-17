@@ -9,7 +9,7 @@
 	<title>Auto Publish for Discord | Publish with no clicks</title>
 	<meta name="description"
 		content="Auto Publish is a Discord bot that when you invite it to your server, will automatically publish your announcements with no delay. No click involved, it just joins and does its tasks with no fuss">
-	<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="preload">
 	<link rel="shortcut icon"
 		href="https://raw.githubusercontent.com/GalvinPython/discord-autopublish/main/.github/assets/loudspeaker_1f4e2.png"
 		type="image/x-icon">
@@ -33,19 +33,26 @@
 		}
 
 		a {
-			color: #bb86fc;
+			color: #ffffff;
+			background-color: #0077cc;
+			padding: 10px 20px;
 			text-decoration: none;
+			border-radius: 5px;
+			display: inline-block;
+			transition: background-color 0.3s;
 		}
 
 		a:hover {
-			text-decoration: underline;
+			background-color: #005fa3;
 		}
+
 
 		.introduction {
 			text-align: center;
 		}
 
 		h1,
+		h2,
 		h3 {
 			color: #bb86fc;
 		}
@@ -76,7 +83,7 @@
 	<main>
 		<section class="introduction">
 			<h1>Auto Publish for Discord</h1>
-			<h3>Publish with no clicks</h3>
+			<h2>Publish with no clicks</h2>
 		</section>
 
 		<section id="about">
@@ -88,7 +95,7 @@
 
 		<section id="howitworks">
 			<h3>How does it work?</h3>
-			<p>It's fairly simple actually! Just invite the bot (<a href="#invite">linked below</a>) and it'll listen
+			<p>It's fairly simple actually! Just invite the bot and it'll listen
 				for your messages and if it's a message from an announcement channel, it'll publish for you
 				automatically!</p>
 			<video controls loop autoplay controlslist="nodownload noplaybackrate" disablepictureinpicture>
@@ -129,7 +136,6 @@
 		<section id="links">
 			<h3>Links</h3>
 			<a href="https://github.com/GalvinPython/discord-autopublish">Github</a>
-			<br>
 			<a href="https://twitter.com/reallygalvin">Twitter</a>
 		</section>
 		<br>
