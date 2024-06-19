@@ -12,9 +12,11 @@ client.on('messageCreate', async (message: Message) => {
 				(${message.guildId}, ${message.guild?.name})
 			`)
 		} catch (error) {
+			console.error(error)
 			log(false, `Error sending message in:
 				${message.channelId} [${message.channel.name}]
 				(${message.guildId}, ${message.guild?.name})
+				${error}
 			`);
 		}
 	}
