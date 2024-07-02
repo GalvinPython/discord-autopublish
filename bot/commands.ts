@@ -6,7 +6,7 @@ import type { CommandInteraction } from 'discord.js';
 
 interface Command {
     data: {
-        options: any[];
+        options: never[];
         name: string;
         description: string;
         integration_types: number[];
@@ -15,7 +15,7 @@ interface Command {
     execute: (interaction: CommandInteraction) => Promise<void>;
 }
 
-const commands: { [key: string]: Command } = {
+const commands: Record<string, Command> = {
     ping: {
         data: {
             options: [],
@@ -24,7 +24,7 @@ const commands: { [key: string]: Command } = {
             integration_types: [0, 1],
             contexts: [0, 1, 2],
         },
-        execute: async (interaction: { reply: (arg0: { ephemeral: boolean; content: string; }) => Promise<any>; client: { ws: { ping: any; }; }; }) => {
+        execute: async (interaction: CommandInteraction) => {
             await interaction
                 .reply({
                     ephemeral: false,
@@ -41,7 +41,7 @@ const commands: { [key: string]: Command } = {
             integration_types: [0, 1],
             contexts: [0, 1, 2],
         },
-        execute: async (interaction: { reply: (arg0: { ephemeral: boolean; content: string; }) => Promise<any>; }) => {
+        execute: async (interaction: CommandInteraction) => {
             await client.application?.commands?.fetch().catch(console.error);
             const chat_commands = client.application?.commands.cache.map((a) => {
                 return `</${a.name}:${a.id}>: ${a.description}`;
@@ -62,7 +62,7 @@ const commands: { [key: string]: Command } = {
             integration_types: [0, 1],
             contexts: [0, 1, 2],
         },
-        execute: async (interaction: { reply: (arg0: { ephemeral: boolean; content: string; }) => Promise<any>; }) => {
+        execute: async (interaction: CommandInteraction) => {
             await interaction
                 .reply({
                     ephemeral: true,
@@ -79,7 +79,7 @@ const commands: { [key: string]: Command } = {
             integration_types: [0, 1],
             contexts: [0, 1, 2],
         },
-        execute: async (interaction: { reply: (arg0: { ephemeral: boolean; content: string; }) => Promise<any>; }) => {
+        execute: async (interaction: CommandInteraction) => {
             await interaction
                 .reply({
                     ephemeral: false,
@@ -98,7 +98,7 @@ const commands: { [key: string]: Command } = {
             integration_types: [0, 1],
             contexts: [0, 1, 2],
         },
-        execute: async (interaction: { reply: (arg0: { ephemeral: boolean; content: string; }) => Promise<any>; }) => {
+        execute: async (interaction: CommandInteraction) => {
             const heap = heapStats();
             Bun.gc(false);
             await interaction
@@ -122,7 +122,7 @@ const commands: { [key: string]: Command } = {
 // Convert commands to a Map
 const commandsMap = new Map<string, Command>();
 for (const key in commands) {
-    if (commands.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(commands, key)) {
         const command = commands[key];
         console.log('loading ' + key);
         commandsMap.set(key, command);

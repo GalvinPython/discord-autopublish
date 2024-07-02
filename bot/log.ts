@@ -1,4 +1,4 @@
-import { EmbedBuilder } from 'discord.js';
+import { EmbedBuilder, TextChannel } from 'discord.js';
 import client from '.';
 
 const targetChannel = process.env.DISCORD_LOGGING_CHANNEL;
@@ -12,7 +12,7 @@ export default async function (success: boolean, msg: string) {
 		.setTitle(success ? 'Message successfully sent' : 'Error');
 
 	try {
-		const channel = await client.channels.fetch(targetChannel);
+		const channel = await client.channels.fetch(targetChannel) as TextChannel;
 		await channel?.send({ embeds: [embed] });
 	} catch (error) {
 		console.error('Error sending message:', error);

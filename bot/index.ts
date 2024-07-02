@@ -1,7 +1,7 @@
 // Check if DISCORD_TOKEN has been provided as an environment variable, and is a valid regex pattern
 const discordToken: string | undefined = process.env?.DISCORD_TOKEN
 
-if (!discordToken || discordToken === 'YOUR_TOKEN_HERE') throw 'You MUST provide a discord token in .env!'
+if (!discordToken || discordToken === 'YOUR_TOKEN_HERE') throw new Error('You MUST provide a discord token in .env!');
 
 // If it has, run the bot
 import { Client, GatewayIntentBits, REST, Routes } from 'discord.js';
@@ -29,9 +29,7 @@ const data: any = await rest.put(
 	},
 );
 
-console.log(
-	`Successfully reloaded ${data.length} application (/) commands.`,
-);
+console.log(`Successfully reloaded ${data.length} application (/) commands.`);
 
 client.login(discordToken);
 
@@ -39,6 +37,6 @@ export default client
 
 // Import events
 const getEvents = await fs.readdir('bot/events');
-for await (const file of getEvents) {
+await Promise.all(getEvents.map(async (file) => {
 	await import('./events/' + file);
-}
+}));

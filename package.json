@@ -2,12 +2,15 @@
   "name": "autopublish",
   "module": "bot/index.ts",
   "type": "module",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "scripts": {
     "start": "bun ."
   },
   "devDependencies": {
-    "@types/bun": "1.1.6"
+    "@eslint/js": "^9.6.0",
+    "@types/bun": "1.1.6",
+    "@types/eslint__js": "^8.42.3",
+    "typescript-eslint": "^7.15.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
