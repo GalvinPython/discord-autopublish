@@ -1,4 +1,4 @@
-import { ActivityType, Events } from 'discord.js';
+import { ActivityType, Events, PresenceUpdateStatus } from 'discord.js';
 import client from '../index';
 
 // update the bot's presence
@@ -7,11 +7,11 @@ function updatePresence() {
 	client.user.setPresence({
 		activities: [
 			{
-				name: `Publishing from ${client.guilds.cache.size} servers.`,
+				name: `Publishing from ${client.guilds.cache.size} servers [${client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0).toLocaleString('en-US')} members]`,
 				type: ActivityType.Custom,
 			},
 		],
-		status: 'online',
+		status: PresenceUpdateStatus.Online,
 	});
 }
 

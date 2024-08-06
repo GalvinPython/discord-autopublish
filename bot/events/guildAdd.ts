@@ -35,9 +35,9 @@ client.on(Events.GuildCreate, async guild => {
 
 		const loggingChannelId = process.env.DISCORD_LOGGING_CHANNEL;
 		if (!loggingChannelId) {
-		  throw new Error('DISCORD_LOGGING_CHANNEL environment variable is not defined.');
+			throw new Error('DISCORD_LOGGING_CHANNEL environment variable is not defined.');
 		}
-		
+
 		const channel = await client.channels.fetch(loggingChannelId) as TextChannel;
 		await channel?.send({ embeds: [embedLoggingChannel] });
 
