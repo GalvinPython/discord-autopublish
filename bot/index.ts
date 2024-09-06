@@ -7,7 +7,12 @@ if (!discordToken || discordToken === 'YOUR_TOKEN_HERE') throw new Error('You MU
 import { Client, GatewayIntentBits, REST, Routes, type APIApplicationCommand } from 'discord.js';
 import commandsMap from './commands';
 import fs from 'fs/promises';
+import { initDatabase } from './database';
 
+// Init the database
+await initDatabase();
+
+// Create the client
 const client = new Client({
 	intents: [
 		GatewayIntentBits.Guilds,
@@ -21,8 +26,7 @@ const rest = new REST().setToken(discordToken);
 const getAppId: { id?: string | null } = (await rest.get(
 	Routes.currentApplication(),
 )) || { id: null };
-if (!getAppId?.id)
-	throw "No application ID was able to be found with this token";
+if (!getAppId?.id) throw "No application ID was able to be found with this token";
 
 const data = (await rest.put(Routes.applicationCommands(getAppId.id), {
 	body: [...commandsMap.values()].map((a) => {

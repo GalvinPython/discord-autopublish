@@ -12,13 +12,12 @@
 1) [Invite the bot to a server of your choice, with all the permissions](https://discord.com/oauth2/authorize?client_id=1241739031252045935&permissions=8&scope=bot+applications.commands)
 2) That's it! Once the bot has been invited, it'll listen out for any messages and will publish them automatically
 
-# Why admin?
-I don't create my bots with admin permissions unless absolutely necessary, however this is a early product and during testing we ran into a lot of permission related issues. The solution was to give it admin permissions.  
-This can be slightly concerning, sure, however security is always my number one priority.
-
 # Rate Limits
 Discord has a rate limit for publishing channels of 10 announcements per server **per hour**.  
 Please do not use this in your server if you exceed this limit
+
+# New in 1.1.0
+The bot has been restructured - mainly because of the admin permissions and how volatile it could be. Whilst it worked, I wanted to ditch it and make it more secure. However, it is now slightly more complicated to setup, hence why there's a guide
 
 # Website
 The website for the bot is [here](https://autopublish.galvindev.me.uk)!
