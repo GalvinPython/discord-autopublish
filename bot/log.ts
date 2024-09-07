@@ -3,6 +3,12 @@ import client from '.';
 
 const targetChannel = process.env.DISCORD_LOGGING_CHANNEL;
 
+/**
+ * Logs to the logging channel
+ * @param success Display error if false, success if true
+ * @param msg The message to be logged
+ * @returns void
+ */
 export default async function (success: boolean, msg: string) {
 	if (!targetChannel || targetChannel === undefined || targetChannel === '') return;
 

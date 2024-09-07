@@ -17,7 +17,8 @@ Discord has a rate limit for publishing channels of 10 announcements per server 
 Please do not use this in your server if you exceed this limit
 
 # New in 1.1.0
-The bot has been restructured - mainly because of the admin permissions and how volatile it could be. Whilst it worked, I wanted to ditch it and make it more secure. However, it is now slightly more complicated to setup, hence why there's a guide
+The bot has been restructured - mainly because of the admin permissions and how volatile it could be. Whilst it worked, I wanted to ditch it and make it more secure. You now have more control over what gets published and when it joins a server, will automatically add all needed permissions to it.
+*Not all features that were meant to be in 1.1.0 were added in it. That's for 1.1.1 as I had to ship it early*
 
 # Website
 The website for the bot is [here](https://autopublish.galvindev.me.uk)!

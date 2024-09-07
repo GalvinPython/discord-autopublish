@@ -5,7 +5,7 @@ import client from '.';
 import { ApplicationCommandOptionType, ChannelType, CommandInteractionOptionResolver, PermissionFlagsBits, type CommandInteraction } from 'discord.js';
 import quickEmbed from './quickEmbed';
 import type { Command } from './types/commands';
-import { addChannelToGuild, checkChannelIsPaused, getChannelIdsOfGuild, hasGuildPaused, removeChannelFromGuild } from './database';
+import { addChannelToGuild, checkChannelIsPaused, getChannelIdsOfGuild, hasGuildPaused, pauseGuild, removeChannelFromGuild, unpauseGuild } from './database';
 
 const commands: Record<string, Command> = {
 	ping: {
@@ -150,7 +150,7 @@ const commands: Record<string, Command> = {
 			const guildHasPaused = await hasGuildPaused(guildId);
 
 			const channels = await interaction.guild.channels.fetch();
-			const accessibleChannels = channels?.filter(channel => channel && channel.permissionsFor(interaction.client.user)?.has(PermissionFlagsBits.ViewChannel) && channel.type == ChannelType.GuildAnnouncement);
+			const accessibleChannels = channels?.filter(channel => channel && client.user && channel.permissionsFor(client.user)?.has(PermissionFlagsBits.ViewChannel) && channel.permissionsFor(client.user)?.has(PermissionFlagsBits.ManageMessages) && channel.type == ChannelType.GuildAnnouncement);
 			const accessibleChannelsIds = accessibleChannels?.map(channel => channel?.id);
 
 			const channelsCanPublishFrom: string[] = [];
@@ -171,7 +171,7 @@ const commands: Record<string, Command> = {
 
 			const canPublishEmbed = quickEmbed({
 				color: 'Green',
-				title: 'Channels the bot can publish from',
+				title: 'Channels the bot will publish from',
 				description: channelsCanPublishFrom.length > 0 ? channelsCanPublishFrom.map(id => `<#${id}>`).join('\n') : 'No channels available'
 			}, interaction);
 
@@ -183,7 +183,8 @@ const commands: Record<string, Command> = {
 
 			await interaction.reply({
 				ephemeral: true,
-				embeds: guildHasPaused ? [canPublishEmbed, barredEmbed, pausedEmbed] : [canPublishEmbed, barredEmbed]
+				embeds: guildHasPaused ? [canPublishEmbed, barredEmbed, pausedEmbed] : [canPublishEmbed, barredEmbed],
+				content: 'If there are any missing channels, please check that the bot has both the `View Channel` and `Manage Messages` permissions.'
 			}).catch(console.error);
 		},
 	},
@@ -321,12 +322,14 @@ const commands: Record<string, Command> = {
 						await interaction.reply('Already paused in the entire server');
 						return;
 					}
+					pauseGuild(interaction.guildId);
 					await interaction.reply('Paused publishing in the entire server');
 				} else if (action === 'resume') {
 					if (!await hasGuildPaused(interaction.guildId)) {
 						await interaction.reply('Guild is not paused');
 						return;
 					}
+					unpauseGuild(interaction.guildId);
 					await interaction.reply('Resumed publishing in the entire server');
 				}
 			}

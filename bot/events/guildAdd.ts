@@ -1,5 +1,6 @@
-import { Events, EmbedBuilder, TextChannel } from 'discord.js';
+import { Events, EmbedBuilder, TextChannel, PermissionFlagsBits, ChannelType } from 'discord.js';
 import client from '../index';
+import { addNewGuild } from '../database';
 
 client.on(Events.GuildCreate, async guild => {
 	try {
@@ -43,5 +44,23 @@ client.on(Events.GuildCreate, async guild => {
 
 	} catch (error) {
 		console.error(`Could not fetch the owner or send a message: ${error}`);
+	}
+
+	// Try adding the bot permissions to announcement channels
+	try {
+		const announcementChannels = guild.channels.cache.filter(channel => channel.type === ChannelType.GuildAnnouncement);
+		announcementChannels.forEach(async channel => {
+			if (client.user) {
+				await channel.permissionOverwrites.create(client.user.id, {
+					ManageChannels: true,
+					ManageMessages: true,
+					SendMessages: true,
+					ViewChannel: true,
+				})
+			}
+		});
+		addNewGuild(guild.id);
+	} catch (error) {
+		console.error(`Could not add permissions to announcement channels: ${error}`);
 	}
 });
