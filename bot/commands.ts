@@ -3,7 +3,7 @@
 import { heapStats } from 'bun:jsc';
 import client from '.';
 import { ApplicationCommandOptionType, ChannelType, CommandInteractionOptionResolver, PermissionFlagsBits, type CommandInteraction } from 'discord.js';
-import quickEmbed from './quickEmbed';
+import quickEmbed from './utils/quickEmbed';
 import type { Command } from './types/commands';
 import { addChannelToGuild, checkChannelIsPaused, getChannelIdsOfGuild, hasGuildPaused, pauseGuild, removeChannelFromGuild, unpauseGuild } from './database';
 
@@ -150,13 +150,18 @@ const commands: Record<string, Command> = {
 			const guildHasPaused = await hasGuildPaused(guildId);
 
 			const channels = await interaction.guild.channels.fetch();
-			const accessibleChannels = channels?.filter(channel => channel && client.user && channel.permissionsFor(client.user)?.has(PermissionFlagsBits.ViewChannel) && channel.permissionsFor(client.user)?.has(PermissionFlagsBits.ManageMessages) && channel.type == ChannelType.GuildAnnouncement);
-			const accessibleChannelsIds = accessibleChannels?.map(channel => channel?.id);
+			const accessibleChannels = channels?.filter(channel => channel &&
+				client.user &&
+				channel.permissionsFor(client.user)?.has(PermissionFlagsBits.ViewChannel) &&
+				channel.permissionsFor(client.user)?.has(PermissionFlagsBits.ManageMessages) &&
+				channel.permissionsFor(client.user)?.has(PermissionFlagsBits.SendMessages) &&
+				channel.type == ChannelType.GuildAnnouncement
+			).map(channel => channel?.id);
 
 			const channelsCanPublishFrom: string[] = [];
 			const channelsBarredFromPublishing: string[] = await getChannelIdsOfGuild(guildId)
 
-			accessibleChannelsIds?.forEach(channelId => {
+			accessibleChannels?.forEach(channelId => {
 				if (!channelId) return;
 				if (!channelsBarredFromPublishing.includes(channelId)) {
 					channelsCanPublishFrom.push(channelId);
@@ -302,39 +307,80 @@ const commands: Record<string, Command> = {
 				}
 				if (subcommand === 'pause') {
 					if (await checkChannelIsPaused(interaction.guildId, targetChannel?.id)) {
-						await interaction.reply('Already paused in this channel');
+						await interaction.reply({
+							ephemeral: true,
+							content: 'Already paused in this channel'
+						});
 						return;
 					}
 					await addChannelToGuild(interaction.guildId, targetChannel?.id);
-					await interaction.reply(`Paused publishing in ${targetChannel?.name}`);
+					await interaction.reply({
+						ephemeral: true,
+						content: `Paused publishing in ${targetChannel?.name}`
+					});
 				} else if (subcommand === 'resume') {
 					if (!await checkChannelIsPaused(interaction.guildId, targetChannel?.id)) {
-						await interaction.reply('Channel is not paused');
+						await interaction.reply({
+							ephemeral: true,
+							content: 'Channel is not paused'
+						});
 						return;
 					}
 					await removeChannelFromGuild(interaction.guildId, targetChannel?.id);
-					await interaction.reply(`Resumed publishing in ${targetChannel?.name}`);
+					await interaction.reply({
+						ephemeral: true,
+						content: `Resumed publishing in ${targetChannel?.name}`
+					});
 				}
 			} else if (subcommand === 'server') {
 				const action = (interaction.options as CommandInteractionOptionResolver).getString('action');
 				if (action === 'pause') {
 					if (await hasGuildPaused(interaction.guildId)) {
-						await interaction.reply('Already paused in the entire server');
+						await interaction.reply({
+							ephemeral: true,
+							content: 'Already paused in the entire server'
+						});
 						return;
 					}
 					pauseGuild(interaction.guildId);
-					await interaction.reply('Paused publishing in the entire server');
+					await interaction.reply({
+						ephemeral: true,
+						content: 'Paused publishing in the entire server'
+					});
 				} else if (action === 'resume') {
 					if (!await hasGuildPaused(interaction.guildId)) {
-						await interaction.reply('Guild is not paused');
+						await interaction.reply({
+							ephemeral: true,
+							content: 'Guild is not paused'
+						});
 						return;
 					}
 					unpauseGuild(interaction.guildId);
-					await interaction.reply('Resumed publishing in the entire server');
+					await interaction.reply({
+						ephemeral: true,
+						content: 'Resumed publishing in the entire server'
+					});
 				}
 			}
 		},
 	},
+	support: {
+		data: {
+			options: [],
+			name: 'support',
+			description: 'Get support for the bot!',
+			integration_types: [0, 1],
+			contexts: [0, 1, 2],
+		},
+		execute: async (interaction: CommandInteraction) => {
+			await interaction
+				.reply({
+					ephemeral: true,
+					content: 'https://discord.gg/AppBeYXVNt',
+				})
+				.catch(console.error);
+		},
+	}
 };
 
 // Convert commands to a Map

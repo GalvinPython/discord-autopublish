@@ -1,6 +1,6 @@
 import { Message, ChannelType } from 'discord.js';
 import client from '../index';
-import log from '../log';
+import log from '../utils/log';
 import { dbPausedChannels, dbPausedGuilds } from '../database';
 
 // Run this event whenever a message has been sent
@@ -18,7 +18,7 @@ client.on('messageCreate', async (message: Message) => {
 			)
 			return
 		}
-		
+
 		try {
 			await message.crosspost()
 			log(true, `Published message in:

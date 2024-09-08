@@ -1,156 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Auto Publisher Discord Bot | Seamless Auto Publish for Your Server
+    </title>
+    <meta
+      name="description"
+      content="Auto Publisher is a Discord bot that automatically publishes announcements in your server with zero clicks. Simplify your Discord server management with our efficient auto publish bot—perfect for hassle-free announcements."
+    />
+    <meta
+      name="keywords"
+      content="Discord bot, auto publish, auto publisher, Discord auto publish, Discord announcements, automate Discord, Discord automation, auto publish bot, Discord server management, Discord tools, publish bot for Discord, automatic Discord publisher"
+    />
+    <meta name="author" content="GalvinPython" />
+    <meta
+      property="og:title"
+      content="Auto Publisher Discord Bot | Seamless Auto Publish for Your Server"
+    />
+    <meta
+      property="og:description"
+      content="Automate your Discord server announcements with the Auto Publisher bot. No clicks, no delays—just automatic publishing."
+    />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/GalvinPython/discord-autopublish/main/.github/assets/loudspeaker_1f4e2.png"
+    />
+    <meta property="og:url" content="https://autopublish.galvindev.me.uk/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Auto Publisher Discord Bot" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Auto Publisher Discord Bot | Seamless Auto Publish for Your Server"
+    />
+    <meta
+      name="twitter:description"
+      content="Use the Auto Publisher bot to automate announcements in your Discord server with zero effort."
+    />
+    <meta
+      name="twitter:image"
+      content="https://raw.githubusercontent.com/GalvinPython/discord-autopublish/main/.github/assets/loudspeaker_1f4e2.png"
+    />
+    <meta name="twitter:site" content="@reallygalvin" />
+    <link rel="canonical" href="https://autopublish.galvindev.me.uk/" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap"
+      rel="preload"
+    />
+    <link
+      rel="shortcut icon"
+      href="https://raw.githubusercontent.com/GalvinPython/discord-autopublish/main/.github/assets/loudspeaker_1f4e2.png"
+      type="image/x-icon"
+    />
+    <style>
+      body {
+        scroll-behavior: smooth;
+        background-color: #121212;
+        font-family: "Urbanist", sans-serif;
+        color: #e0e0e0;
+        margin: 0;
+        padding: 0;
+      }
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Auto Publisher Discord Bot | Seamless Auto Publish for Your Server</title>
-	<meta name="description"
-		content="Auto Publisher is a Discord bot that automatically publishes announcements in your server with zero clicks. Simplify your Discord server management with our efficient auto publish bot—perfect for hassle-free announcements.">
-	<meta name="keywords"
-		content="Discord bot, auto publish, auto publisher, Discord auto publish, Discord announcements, automate Discord, Discord automation, auto publish bot, Discord server management, Discord tools, publish bot for Discord, automatic Discord publisher">
-	<meta name="author" content="GalvinPython">
-	<meta property="og:title" content="Auto Publisher Discord Bot | Seamless Auto Publish for Your Server">
-	<meta property="og:description"
-		content="Automate your Discord server announcements with the Auto Publisher bot. No clicks, no delays—just automatic publishing.">
-	<meta property="og:image"
-		content="https://raw.githubusercontent.com/GalvinPython/discord-autopublish/main/.github/assets/loudspeaker_1f4e2.png">
-	<meta property="og:url" content="https://autopublish.galvindev.me.uk/">
-	<meta property="og:type" content="website">
-	<meta property="og:site_name" content="Auto Publisher Discord Bot">
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content="Auto Publisher Discord Bot | Seamless Auto Publish for Your Server">
-	<meta name="twitter:description"
-		content="Use the Auto Publisher bot to automate announcements in your Discord server with zero effort.">
-	<meta name="twitter:image"
-		content="https://raw.githubusercontent.com/GalvinPython/discord-autopublish/main/.github/assets/loudspeaker_1f4e2.png">
-	<meta name="twitter:site" content="@reallygalvin">
-	<link rel="canonical" href="https://autopublish.galvindev.me.uk/">
-	<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="preload">
-	<link rel="shortcut icon"
-		href="https://raw.githubusercontent.com/GalvinPython/discord-autopublish/main/.github/assets/loudspeaker_1f4e2.png"
-		type="image/x-icon">
-	<style>
-		body {
-			scroll-behavior: smooth;
-			background-color: #121212;
-			font-family: 'Urbanist', sans-serif;
-			color: #e0e0e0;
-			margin: 0;
-			padding: 0;
-		}
+      main {
+        background-color: #1e1e1e;
+        width: 80vw;
+        margin: 20px auto;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+      }
 
-		main {
-			background-color: #1e1e1e;
-			width: 80vw;
-			margin: 20px auto;
-			padding: 20px;
-			box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-			border-radius: 8px;
-		}
+      a {
+        color: #ffffff;
+        background-color: #0077cc;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        display: inline-block;
+        transition: background-color 0.3s;
+      }
 
-		a {
-			color: #ffffff;
-			background-color: #0077cc;
-			padding: 10px 20px;
-			text-decoration: none;
-			border-radius: 5px;
-			display: inline-block;
-			transition: background-color 0.3s;
-		}
+      a:hover {
+        background-color: #005fa3;
+      }
 
-		a:hover {
-			background-color: #005fa3;
-		}
+      .introduction {
+        text-align: center;
+      }
 
+      h1,
+      h2,
+      h3 {
+        color: #bb86fc;
+      }
 
-		.introduction {
-			text-align: center;
-		}
+      #about,
+      #howitworks,
+      #terms,
+      #privacy,
+      #invite,
+      #links {
+        margin-bottom: 20px;
+      }
 
-		h1,
-		h2,
-		h3 {
-			color: #bb86fc;
-		}
+      @media (max-width: 768px) {
+        main {
+          width: 90vw;
+          padding: 10px;
+        }
+      }
 
-		#about,
-		#howitworks,
-		#terms,
-		#privacy,
-		#invite,
-		#links {
-			margin-bottom: 20px;
-		}
+      video {
+        width: 90%;
+      }
+    </style>
+  </head>
 
-		@media (max-width: 768px) {
-			main {
-				width: 90vw;
-				padding: 10px;
-			}
-		}
+  <body>
+    <main>
+      <section class="introduction">
+        <h1>Auto Publish for Discord</h1>
+        <h2>Publish with no clicks</h2>
+      </section>
 
-		video {
-			width: 90%;
-		}
-	</style>
-</head>
+      <section id="about">
+        <h3>What is it?</h3>
+        <p>
+          Auto Publish is a Discord bot that when you invite it to your server,
+          will automatically publish your announcements with no delay. No click
+          involved, it just joins and does its tasks with no fuss
+        </p>
+      </section>
 
-<body>
-	<main>
-		<section class="introduction">
-			<h1>Auto Publish for Discord</h1>
-			<h2>Publish with no clicks</h2>
-		</section>
+      <section id="howitworks">
+        <h3>How does it work?</h3>
+        <p>
+          It's fairly simple actually! Just invite the bot and it'll listen for
+          your messages and if it's a message from an announcement channel,
+          it'll publish for you automatically! When it joins, it'll
+          automatically add the correct permissions for the bot to function to
+          all announcement channels, and will do the same when you create new
+          one! No input required, it's all automatic!
+        </p>
+        <video
+          controls
+          loop
+          autoplay
+          controlslist="nodownload noplaybackrate"
+          disablepictureinpicture
+        >
+          <source src="./demo.mp4" type="video/mp4" />
+          Your browser can't play this video
+        </video>
+      </section>
 
-		<section id="about">
-			<h3>What is it?</h3>
-			<p>Auto Publish is a Discord bot that when you invite it to your server, will automatically publish your
-				announcements with
-				no delay. No click involved, it just joins and does its tasks with no fuss</p>
-		</section>
+      <section id="terms">
+        <h3>Terms of Service</h3>
+        <p>
+          In accordance with Discord's rate limit for 10 published messages per
+          hour per server, we allow the bot to be used in any server that
+          doesn't exceed these limits. We reserve the right to block the bot
+          from your server if it constantly exceeds this limit. Furthermore, the
+          server must comply with Discord's Terms of Service and we reserve the
+          right to block the bot from your server if we deem that it's
+          unacceptable <br />
+          Please note that we reserve the right to change these terms at any
+          time.
+        </p>
+      </section>
 
-		<section id="howitworks">
-			<h3>How does it work?</h3>
-			<p>It's fairly simple actually! Just invite the bot and it'll listen
-				for your messages and if it's a message from an announcement channel, it'll publish for you
-				automatically!</p>
-			<video controls loop autoplay controlslist="nodownload noplaybackrate" disablepictureinpicture>
-				<source src="./demo.mp4" type="video/mp4">
-				Your browser can't play this video
-			</video>
-		</section>
+      <section id="privacy">
+        <h3>Privacy Policy</h3>
+        <p>
+          We log every action from the bot so that we are able to identify
+          errors and investigate why they happened. We do not log any other
+          information, such as the message. Just if a message was published, and
+          if an error happened, why <br />
+          Starting in 1.1.0, we introduced a new system so you have more control
+          over the bot in your server. We use a database to store the guild ID,
+          any flags associated with that guild for the bot only, and any paused
+          channels from publishing
+        </p>
+      </section>
 
-		<section id="terms">
-			<h3>Terms of Service</h3>
-			<p>In accordance with Discord's rate limit for 10 published messages per hour per server, we allow the bot
-				to be used in any server that doesn't exceed these limits. We reserve the right to block the bot from
-				your server if it constantly exceeds this limit. Furthermore, the server must comply with Discord's
-				Terms of Service and we reserve the right to block the bot from your server if we deem that it's
-				unacceptable</p>
-		</section>
+      <section id="invite">
+        <h3>Invites</h3>
+        <a
+          href="https://discord.com/oauth2/authorize?client_id=1241739031252045935&permissions=268446736&integration_type=0&scope=bot+applications.commands"
+          >Bot</a
+        >
+        <a href="https://discord.gg/AppBeYXVNt">Support Server</a>
+      </section>
 
-		<section id="privacy">
-			<h3>Privacy Policy</h3>
-			<p>We log every action from the bot so that we are able to identify errors and investigate why they
-				happened. We do not log any other information, such as the message. Just if a message was published, and
-				if an error happened, why</p>
-		</section>
-
-		<section id="invite">
-			<h3>Invites</h3>
-			<a
-				href="https://discord.com/oauth2/authorize?client_id=1241739031252045935&permissions=8&scope=bot+applications.commands">Bot</a>
-		</section>
-
-		<section id="links">
-			<h3>Links</h3>
-			<a href="https://github.com/GalvinPython/discord-autopublish">Github</a>
-			<a href="https://twitter.com/reallygalvin">Twitter</a>
-		</section>
-		<br>
-		<span><b>Current version (1.1.0)</b> released <b>7th September 2024</b></span>
-	</main>
-</body>
-
+      <section id="links">
+        <h3>Links</h3>
+        <a href="https://github.com/GalvinPython/discord-autopublish">Github</a>
+        <a href="https://twitter.com/reallygalvin">Twitter</a>
+      </section>
+      <br />
+      <span
+        ><b>Current version (1.1.1)</b> released <b>8th September 2024</b></span
+      >
+    </main>
+  </body>
 </html>

@@ -91,8 +91,5 @@ export async function updatePausedList() {
 		if (!dbPausedChannels[row.guild_id]) dbPausedChannels[row.guild_id] = [];
 		dbPausedChannels[row.guild_id].push(row.channel_id);
 	});
-	
-	console.dir(dbPausedChannels, { depth: null });
-	console.dir(dbPausedGuilds, { depth: null });
 }
 //#endregion

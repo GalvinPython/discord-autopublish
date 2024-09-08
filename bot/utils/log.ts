@@ -1,5 +1,5 @@
 import { EmbedBuilder, TextChannel } from 'discord.js';
-import client from '.';
+import client from '..';
 
 const targetChannel = process.env.DISCORD_LOGGING_CHANNEL;
 

@@ -2,7 +2,7 @@ import { ApplicationCommandOptionType, CommandInteraction } from "discord.js";
 
 export interface Command {
 	data: {
-		options: Option[];
+		options: Options[];
 		name: string;
 		description: string;
 		integration_types: number[];
@@ -11,20 +11,20 @@ export interface Command {
 	execute: (interaction: CommandInteraction) => Promise<void>;
 }
 
-export interface Option {
+export interface Options {
 	type: ApplicationCommandOptionType
 	name: string
 	description: string
-	options: Option2[]
+	options: Options2[]
 }
 
-export interface Option2 {
+export interface Options2 {
 	type: ApplicationCommandOptionType
 	name: string
 	description: string
 	required?: boolean
 	choices?: Choice[]
-	options?: Option3[]
+	options?: Options3[]
 }
 
 export interface Choice {
@@ -32,7 +32,7 @@ export interface Choice {
 	value: string
 }
 
-export interface Option3 {
+export interface Options3 {
 	type: ApplicationCommandOptionType
 	name: string
 	description: string
