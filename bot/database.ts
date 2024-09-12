@@ -65,7 +65,7 @@ export async function checkChannelIsPaused(guildId: string, channelId: string): 
 
 //#region Guild Management
 export async function addNewGuild(guildId: string): Promise<void> {
-	db.query('INSERT INTO guilds (guild_id) VALUES ($guildId').run({ $guildId: guildId });
+	db.query('INSERT INTO guilds (guild_id) VALUES ($guildId)').run({ $guildId: guildId });
 }
 export async function removeGuild(guildId: string): Promise<void> {
 	db.query('DELETE FROM guilds WHERE guild_id = $guildId').run({ $guildId: guildId });
