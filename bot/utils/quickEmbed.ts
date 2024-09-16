@@ -1,10 +1,17 @@
 import { EmbedBuilder, type Client, type ColorResolvable, type CommandInteraction } from "discord.js";
 
+/**
+ * Quick embed builder
+ * @param color Color of the embed
+ * @param interaction Interaction that triggered the command
+ * @param client The bot client
+ * @returns `EmbedBuilder`
+ */
 export default function (
 	{ color, title, description }: { color: ColorResolvable; title: string; description: string },
 	interaction?: CommandInteraction,
 	client?: Client
-) {
+): EmbedBuilder {
 	return new EmbedBuilder()
 		.setColor(color)
 		.setTitle(title)

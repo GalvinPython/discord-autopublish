@@ -2,6 +2,11 @@ import type { NewsChannel } from "discord.js";
 import client from "..";
 import log from "./log";
 
+/**
+ * Permissions manager for the bot
+ * @param targetChannel The target channel ID
+ * @returns `boolean`
+ */
 export default async function addPermissionsToChannel(targetChannel: NewsChannel): Promise<boolean> {
 	try {
 		if (client.user) {

@@ -7,9 +7,9 @@ const targetChannel = process.env.DISCORD_LOGGING_CHANNEL;
  * Logs to the logging channel
  * @param success Display error if false, success if true
  * @param msg The message to be logged
- * @returns void
+ * @returns `void`
  */
-export default async function (success: boolean, msg: string) {
+export default async function (success: boolean, msg: string): Promise<void> {
 	if (!targetChannel || targetChannel === undefined || targetChannel === '') return;
 
 	const embed = new EmbedBuilder()

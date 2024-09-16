@@ -7,7 +7,7 @@ function updatePresence() {
 	client.user.setPresence({
 		activities: [
 			{
-				name: `Publishing from ${client.guilds.cache.size} servers [${client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0).toLocaleString('en-US')} members]`,
+				name: `Publishing from ${client.guilds.cache.size} servers [${client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0).toLocaleString()} members]`,
 				type: ActivityType.Custom,
 			},
 		],
