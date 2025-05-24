@@ -1,0 +1,61 @@
+body {
+  scroll-behavior: smooth;
+  background-color: #121212;
+  font-family: "Urbanist", sans-serif;
+  color: #e0e0e0;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  background-color: #1e1e1e;
+  width: 80vw;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+a {
+  color: #ffffff;
+  background-color: #0077cc;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+  transition: background-color 0.3s;
+}
+
+a:hover {
+  background-color: #005fa3;
+}
+
+.introduction {
+  text-align: center;
+}
+
+h1,
+h2,
+h3 {
+  color: #bb86fc;
+}
+
+#about,
+#howitworks,
+#terms,
+#privacy,
+#invite,
+#links {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  main {
+    width: 90vw;
+    padding: 10px;
+  }
+}
+
+video {
+  width: 90%;
+}
