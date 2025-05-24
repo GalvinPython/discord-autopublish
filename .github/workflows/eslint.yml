@@ -23,4 +23,4 @@ jobs:
         run: bun install
 
       - name: Run ESLint
-        run: bunx eslint .
+        run: bun lint

@@ -4,6 +4,9 @@
 
 [Invite it here](https://discord.com/oauth2/authorize?client_id=1241739031252045935&permissions=268446736&integration_type=0&scope=bot+applications.commands)
 
+> [!WARNING]
+> 2.0.0 is in development
+
 # Why use this?
 
 - Automatically publishes announcements for you, in case you forget; or a bot sends a message; or you just want to take the easier route
@@ -28,6 +31,10 @@
 Discord has a rate limit for publishing channels of 10 announcements per server **per hour**.  
 Please do not use this in your server if you exceed this limit
 
+# New in 2.0.0
+
+- Upcoming 👀
+
 # New in 1.1.0
 
 The bot has been restructured - mainly because of the admin permissions and how volatile it could be. Whilst it worked, I wanted to ditch it and make it more secure. You now have more control over what gets published and when it joins a server, will automatically add all needed permissions to it.
@@ -37,8 +44,9 @@ _Not all features that were meant to be in 1.1.0 were added in it. That's for 1.
 
 The website for the bot is [here](https://autopublish.galvindev.me.uk)!
 
-<!-- # Support
-[Support Discord Server](https://discord.gg/<REDACTED_FOR_NOW>) -->
+# Support
+
+[Support Discord Server](discord.gg/AppBeYXVNt)
 
 # User Integration
 

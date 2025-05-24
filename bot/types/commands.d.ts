@@ -11,6 +11,7 @@ export interface Command {
 	execute: (interaction: CommandInteraction) => Promise<void>;
 }
 
+// TODO: Retype names
 export interface Options {
 	type: ApplicationCommandOptionType
 	name: string

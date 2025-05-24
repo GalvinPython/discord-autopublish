@@ -1,11 +1,12 @@
 import { Database } from 'bun:sqlite';
 import path from 'path';
-import type { DatabaseStructureChannels, DatabaseStructureGuilds } from './types/database';
+import type { DatabaseStructureChannels, DatabaseStructureGuilds, DatabaseStructureMetrics } from './types/database';
 
 const db: Database = new Database(path.join(__dirname, 'db.sqlite'));
 
 export let dbPausedChannels: Record<string, string[]> = {};
 export let dbPausedGuilds: string[] = [];
+export const dbMetrics: DatabaseStructureMetrics = await metricsGet();
 
 export async function initDatabase(): Promise<boolean> {
 	try {
@@ -22,9 +23,18 @@ export async function initDatabase(): Promise<boolean> {
 				guild_paused BOOLEAN NOT NULL DEFAULT FALSE
 			)
 		`).run();
+
+		db.query(`
+			CREATE TABLE IF NOT EXISTS metrics (
+				total_messages INTEGER NOT NULL DEFAULT 0,
+				total_servers INTEGER NOT NULL DEFAULT 0
+				total_members INTEGER NOT NULL DEFAULT 0
+			)
+		`).run();
 		console.log('Database initialized');
 		await updatePausedList();
 		setInterval(updatePausedList, 1000 * 60)
+		setInterval(updateMetrics, 1000 * 60)
 		return true;
 	} catch (error) {
 		console.error('Error initializing database:', error);
@@ -39,7 +49,7 @@ export async function getChannelIdsOfGuild(guildId: string): Promise<string[]> {
 
 export async function hasGuildPaused(guildId: string): Promise<boolean> {
 	const result = db.query('SELECT guild_paused FROM guilds WHERE guild_id = $guildId').get({ $guildId: guildId });
-	return !(!result)
+	return !!result
 }
 
 export async function pauseGuild(guildId: string): Promise<void> {
@@ -60,7 +70,20 @@ export async function removeChannelFromGuild(guildId: string, channelId: string)
 
 export async function checkChannelIsPaused(guildId: string, channelId: string): Promise<boolean> {
 	const result = db.query('SELECT guild_paused FROM guilds WHERE guild_id = $guildId').get({ $guildId: guildId, $channelId: channelId });
-	return !(!result)
+	return !!result
+}
+
+export async function metricsUpdateMessageCount(totalCount: number): Promise<void> {
+	db.query('UPDATE metrics SET total_messages = $totalCount').run({ $totalCount: totalCount });
+}
+
+export async function metricsUpdateServerCount(totalCount: number): Promise<void> {
+	db.query('UPDATE metrics SET total_servers = $totalCount').run({ $totalCount: totalCount });
+}
+
+export async function metricsGet(): Promise<DatabaseStructureMetrics> {
+	const result = db.query('SELECT * FROM metrics').get() as DatabaseStructureMetrics;
+	return result;
 }
 
 //#region Guild Management
@@ -91,5 +114,10 @@ export async function updatePausedList() {
 		if (!dbPausedChannels[row.guild_id]) dbPausedChannels[row.guild_id] = [];
 		dbPausedChannels[row.guild_id].push(row.channel_id);
 	});
+}
+
+export async function updateMetrics() {
+	metricsUpdateMessageCount(dbMetrics.total_messages);
+	metricsUpdateServerCount(dbMetrics.total_servers);
 }
 //#endregion
